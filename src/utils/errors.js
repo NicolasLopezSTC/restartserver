@@ -10,10 +10,8 @@ export const notFound = (error, req, res, next) => {
 export const errorHandler = (error, req, res, next) => {
   const statusCode = res.statusCode === 200 ? 500 : res.statusCode
 
-  logger.error({
-    message: error.message,
-    stack: error, stock,
-  })
+  logger.error( message: new Error(error.message))
+   
 
   res.status(statusCode)
   res.json({

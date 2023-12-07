@@ -1,6 +1,6 @@
-import { consola, createConsola } from "consola";
-const logger = consola
+import pino from 'pino'
 
+const logger = pino({ prettyPrint: { colorize: true } })
 
 export default logger
 

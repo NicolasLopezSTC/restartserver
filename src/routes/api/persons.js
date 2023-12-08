@@ -15,14 +15,13 @@ router.post('/', (req, res) => {
     res.send({ msg: 'Creating a new Person' })
 })
 
-router.put('/', (req, res) => {
+router.put('/:id', (req, res) => {
     res.send({ msg: `Updating Person ${req.params.id}`})
 })
 
-router.delete('/', (req, res) => {
+router.delete('/:id', (req, res) => {
     res.send({ msg: `Deleting Person ${req.params.id}`})
 })
-
 
 
 

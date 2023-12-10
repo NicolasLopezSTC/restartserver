@@ -5,14 +5,21 @@ export const getEmployees = async () => db.employee.findMany()
 export const getEmployee = async (id) =>
   db.employee.findUnique({ where: { employeeId: id } })
 
-export const addemployee = async (employeeData, departmentId) =>
-  db.employee.create({ data: { ...employeeData, departmentId } })
+export const addemployee = async (employeeData) =>
+  db.employee.create({ data: { ...employeeData } })
 
-  export const updateEmployee = async (id, employeeData, departmentId) =>
-  db.employee.update({
+export const updateEmployee = async (id, employeeData) => {
+const employee = await getEmployee(id)
+if (employee) {
+
+return db.employee.update({
     where: { employeeId: id },
-    data: { ...employeeData, departmentId },
-})
+    data: { ...employee, ...employeeData, updatedAt: new Date() },
+  })
+}
+
+return null
+}
 
 export const deleteEmployee = async (id) =>
-  db.employee.delete({ where: { employeeId: id }})
+  db.employee.delete({ where: { employeeId: id } })

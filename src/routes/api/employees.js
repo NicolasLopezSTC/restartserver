@@ -1,49 +1,49 @@
 import { Router } from 'express'
 
 import {
-    getEmployee,
-    getEmployees,
-    addEmployee,
-    deleteEmployee,
+  getEmployee,
+  getEmployees,
+  addEmployee,
+  deleteEmployee,
 } from '../../models/employees'
 
 const router = Router()
 
 router.get('/', async (req, res) => {
-    const employees = await getEmployees()
-    res.send(employees)
-  })
-  
-  router.get('/:id', async (req, res) => {
-    const employee = await getEmployee(req.params.id)
-    if (employee) {
-      res.send(employee)
-    } else {
-      res.status(404).send({ msg: 'Employee not found' })
-    }
-  })
+  const employees = await getEmployees()
+  res.send(employees)
+})
 
-  router.post('/', async (req, res) => {
-    const employee = await addEmployees(req.body)
+router.get('/:id', async (req, res) => {
+  const employee = await getEmployee(req.params.id)
+  if (employee) {
     res.send(employee)
-  })
+  } else {
+    res.status(404).send({ msg: 'Employee not found' })
+  }
+})
 
-  router.get('/:id', async (req, res) => {
-    const employee = await updateEmployee(req.params.id, req.body)
-    if (employee) {
-      res.send(employee)
-    } else {
-      res.status(404).send({ msg: 'Employee not found' })
-    }
-  })
+router.post('/', async (req, res) => {
+  const employee = await addEmployees(req.body)
+  res.send(employee)
+})
 
-  router.delete('/:id', async (req, res) => {
-    const employee = await deleteEmployee(req.params.id)
-    if (employee) {
-      res.send(employee)
-    } else {
-      res.status(404).send({ msg: 'Employee not found' })
-    }
-  })
+router.get('/:id', async (req, res) => {
+  const employee = await updateEmployee(req.params.id, req.body)
+  if (employee) {
+    res.send(employee)
+  } else {
+    res.status(404).send({ msg: 'Employee not found' })
+  }
+})
 
-  export default router
+router.delete('/:id', async (req, res) => {
+  const employee = await deleteEmployee(req.params.id)
+  if (employee) {
+    res.send(employee)
+  } else {
+    res.status(404).send({ msg: 'Employee not found' })
+  }
+})
+
+export default router

@@ -8,9 +8,9 @@ import bodyParser from 'body-parser'
 import basicAuth from 'express-basic-auth'
 import logger from './utils/logger'
 import router from './routes'
-import { notFound, errorHandler } from './utils/errors'
+//import { notFound, errorHandler } from './utils/errors'
 
-const port = parseInt(process.env.PORT, 10) || 3000
+const port = Number(process.env.PORT) || 3000
 
 const app = express()
 
@@ -24,11 +24,11 @@ app.use(cors({ origin: process.env.ORIGIN }))
 app.use(helmet())
 app.use(bodyParser.json())
 
-app.use(router)
+app.use('/',router)
 
-app.use(notFound)
-app.use(errorHandler)
+//app.use(notFound)
+//app.use(errorHandler)
 
 app.listen(port, () =>
-  logger.info(`Application started at http://localhost:${process.env.PORT}`),
+  logger.info(`Application started at http://localhost:${port}`)
 )

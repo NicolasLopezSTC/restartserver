@@ -5,7 +5,7 @@ export const getEmployees = async () => db.employee.findMany()
 export const getEmployee = async (id) =>
   db.employee.findUnique({ where: { employeeId: id } })
 
-export const addemployee = async (employeeData) =>
+export const addEmployee = async (employeeData) =>
   db.employee.create({ data: { ...employeeData } })
 
 export const updateEmployee = async (id, employeeData) => {
